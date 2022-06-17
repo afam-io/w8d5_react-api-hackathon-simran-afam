@@ -4,20 +4,33 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  function handleClick() {
-    return console.log("button works");
-  }
+
+  // const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  // const answer = await result.json();
+  // console.log(answer.name);
+  // setPokemon({ name: answer.name, imgSrc: answer.sprites.front_shiny });
+
+ 
   const [joke, setJoke] = useState({
     joke: "get ready for the funniest joke of your life",
     answer: " ",
   });
 
-  function handleClick(e) {}
+  function handleClick() {
+    async function fetchData() {
+    const result = await fetch("https://v2.jokeapi.dev/joke/Any?safe-mode")
+    const fetchJoke = await result.json()
+    setJoke({joke: fetchJoke.setup, answer: fetchJoke.delivery})
+    }
+   fetchData()
+
+  }
 
   return (
     <main>
-      <Display />
+    <h1>RANDOM JOKE GENERATOR</h1>
       <Button handleClick={handleClick} />
+      <Display joke={joke}/>
     </main>
   );
 }
