@@ -7,10 +7,34 @@
   pointer-events: none;
 }
 
+main {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+
+}
+
+.top {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button {
+  right: 10%
+}
+
 .bottom-display {
   width: 100%;
   background-color: white;
   color: black;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
