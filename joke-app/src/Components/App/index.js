@@ -1,6 +1,7 @@
 import Button from "../Button";
 import Display from "../Display";
 import { useState } from "react";
+
 import "./App.css";
 
 function App() {
@@ -18,18 +19,17 @@ function App() {
     async function fetchData() {
       const result = await fetch("https://v2.jokeapi.dev/joke/Any?safe-mode");
       const fetchJoke = await result.json();
-      console.log(fetchJoke)
+      console.log(fetchJoke);
       setJoke({ joke: fetchJoke.setup, answer: fetchJoke.delivery });
     }
-    
     fetchData();
   }
 
   return (
     <main>
-    <div className="top">
-      <h1>RANDOM JOKE GENERATOR</h1>
-      <Button className="button" handleClick={handleClick} />
+      <div className="top">
+        <h1>RANDOM JOKE GENERATOR</h1>
+        <Button className="button" handleClick={handleClick} />
       </div>
       <section className="bottom-display">
         <Display joke={joke} />
