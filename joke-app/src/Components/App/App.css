@@ -22,11 +22,30 @@ main {
   flex-direction: column;
 }
 
+.top-es {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .button {
   right: 10%
 }
 
 .bottom-display {
+  width: 100%;
+  background-color: white;
+  color: black;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bottom-display-es {
   width: 100%;
   background-color: white;
   color: black;
