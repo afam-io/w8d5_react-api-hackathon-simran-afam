@@ -1,6 +1,6 @@
 import Button from '../Button';
 import Display from '../Display';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import './App.css';
 
@@ -14,7 +14,12 @@ function App() {
     const data = await fetch('https://v2.jokeapi.dev/joke/Any?safe-mode');
     const jokeObj = await data.json();
     console.log(jokeObj);
-    setJoke({ joke: jokeObj.setup, answer: jokeObj.delivery });
+    // api sometimes joke in joke/anwser format or in setup/ delivery when the joke type is twopart.
+
+    if (jokeObj.type === 'twopart') {
+      setJoke({ joke: jokeObj.setup, answer: jokeObj.delivery });
+    }
+    setJoke({ joke: jokeObj.joke, answer: jokeObj.answer });
   }
 
   const [jokeEs, setJokeEs] = useState({
@@ -22,17 +27,19 @@ function App() {
     answer: '',
   });
 
-  function handleClickEs() {
-    async function fetchData() {
-      const data = await fetch('https://v2.jokeapi.dev/joke/Any?lang=es');
-      const jokeObj = await data.json();
-      console.log(jokeObj);
+  async function fetchDataES() {
+    const data = await fetch('https://v2.jokeapi.dev/joke/Any?lang=es');
+    const jokeObj = await data.json();
+    console.log(jokeObj);
+    // api sometimes joke in joke/anwser format or in setup/ delivery when the joke type is twopart.
+    if (jokeObj.type === 'twopart') {
       setJokeEs({ joke: jokeObj.setup, answer: jokeObj.delivery });
     }
-    fetchData();
+    setJokeEs({ joke: jokeObj.joke, answer: jokeObj.answer });
   }
 
   console.log('testing joke', joke);
+  console.log('testing spanish joke', jokeEs);
   return (
     <main>
       {joke.delivery}
@@ -49,11 +56,7 @@ function App() {
       </section>
       <div className='top-es'>
         <h1>LEER CHISTES GRACIOSOS</h1>
-        <Button
-          text='BROMA'
-          className='button-es'
-          handleClick={handleClickEs}
-        />
+        <Button text='BROMA' className='button-es' handleClick={fetchDataES} />
       </div>
       <section className='bottom-display-es'>
         <Display joke={jokeEs} />
