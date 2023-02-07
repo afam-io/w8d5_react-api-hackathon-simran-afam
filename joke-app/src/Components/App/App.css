@@ -11,7 +11,10 @@ main {
   display: flex;
   align-content: center;
   flex-direction: column;
+}
 
+h2 {
+  padding: 1rem;
 }
 
 .top {
@@ -20,6 +23,7 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1vw;
 }
 
 .top-es {
@@ -31,7 +35,7 @@ main {
 }
 
 .button {
-  right: 10%
+  right: 10%;
 }
 
 .bottom-display {
